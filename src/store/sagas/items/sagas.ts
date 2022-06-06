@@ -7,7 +7,7 @@ import { FETCH_ITEMS_REQUEST } from "../../actionTypes";
 import { Item } from './../../types';
 
 const getItems = () =>
-  axios.get<Item[]>(`${url}/item`);
+  axios.get<Item[]>(`${url}/pokemon`);
 
 /*
   Worker Saga: Fired on FETCH_ITEMS_REQUEST action
