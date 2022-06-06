@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchItemsRequest } from "./store/actions";
 
-function App() {
+import {
+  getIsLoadingSelector,
+  getItemsSelector,
+  getErrorSelector
+} from "./store/selectors";
+
+
+const App = () => {
+  const dispatch = useDispatch();
+  const idLoading = useSelector(getIsLoadingSelector);
+  const items = useSelector(getItemsSelector);
+  const error = useSelector(getErrorSelector);
+
+  useEffect(() => {
+    dispatch(fetchItemsRequest());
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ padding: "15px" }}>
+      {idLoading ? (
+        <div>Loading...</div>
+      ) : error ? (
+        <div>Error</div>
+      ) : (
+        items.map((item: any, index: number) => (
+          <div style={{ marginBottom: "10px" }} key={index}>
+            {++index}. {item.name}
+          </div>
+        ))
+      )}
     </div>
   );
-}
+};
 
 export default App;
