@@ -11,9 +11,9 @@ export interface Sprites {
 export interface Item {
   id: number;
   name: string;
-  cost: boolean;
+  cost: number;
   fling_power: number;
-  flingEffect: string;
+  fling_effect: string;
   sprites: Sprites;
 }
 
