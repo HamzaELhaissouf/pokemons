@@ -111,9 +111,9 @@ const ItemModal = () => {
                                                     {/* Abilities */}
                                                     <h4 className="text-gray-900 font-medium text-lg">Type :</h4>
                                                     <div className="flex mt-2">
-                                                        {item?.types.map(({ type }: any) => (
+                                                        {item?.types.map(({ type }: any , index:number) => (
 
-                                                            <span className={`inline-flex items-center px-4 py-2 border ${returnColorDependsOnType(type.name)}  rounded-md shadow-sm text-sm font-medium text-white   mr-2`}
+                                                            <span key={index} className={`inline-flex items-center px-4 py-2 border ${returnColorDependsOnType(type.name)}  rounded-md shadow-sm text-sm font-medium text-white   mr-2`}
                                                             >{upperFirstChar(type?.name)}</span>))}
 
                                                     </div>
@@ -122,8 +122,8 @@ const ItemModal = () => {
                                                 <div className="mt-5   bg-">
                                                     <h4 className="text-gray-900 font-medium text-lg">Abilities :</h4>
                                                     <div className="flex mt-2">
-                                                        {item?.abilities.map(({ ability }: any) => (
-                                                            <span className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 mr-2"
+                                                        {item?.abilities.map(({ ability }: any , index:number) => (
+                                                            <span key={index} className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 mr-2"
                                                             >{upperFirstChar(ability?.name)}</span>))}
 
                                                     </div>
