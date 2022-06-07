@@ -1,11 +1,11 @@
 import { combineReducers } from "redux";
 
-import todoReducer from "./items/reducer";
+import itemsReducer from "./items/reducer";
 
 const rootReducer = combineReducers({
- items: todoReducer,
+ items: itemsReducer,
 });
 
-export type AppState = ReturnType<typeof rootReducer>;
+export type AppState = ReturnType<typeof rootReducer> | never;
 
 export default rootReducer;

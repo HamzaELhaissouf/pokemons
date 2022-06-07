@@ -1,13 +1,26 @@
 import { Transition } from "@headlessui/react"
 import { useState } from "react"
 import { Item } from "../../store/types"
-import {InformationCircleIcon} from '@heroicons/react/solid'
+import { InformationCircleIcon } from '@heroicons/react/solid'
+import { upperFirstChar } from "../../utils"
+import { useDispatch } from "react-redux"
+import { fetchItemDetailsRequest } from "../../store/actions/items/actions"
+import { dreamWorlUrl } from "../../config"
 
 type ItemProps = {
     item: Item
 }
 
 const ItemCard = ({ item }: ItemProps) => {
+
+
+    const dispatch = useDispatch()
+
+    const showPokemon = (id: number) => {
+        dispatch(fetchItemDetailsRequest({ id }))
+    }
+
+
     return (
         <Transition
             show={true}
@@ -17,22 +30,25 @@ const ItemCard = ({ item }: ItemProps) => {
             leave="transition-opacity duration-150"
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
-            className=" hover:cursor-pointer hover:opacity-40"
+            data-testid='wrapper'
+            className=" hover:cursor-pointer hover:opacity-40 itemCard"
+            onClick={() => showPokemon(item.id)}
         >
-            <div className="group bg-white rounded shadow-md p-4  content-center Items-center justify-center h-72 relative border border-gray-10" >
-                <div className='absolute right-2 top-2 h-5 w-5' onClick={() => console.log('hello')}>
+            <div className="group  p-2  content-center Items-center justify-center h-72 relative " >
+                {/* <div className='absolute right-2 top-2 h-5 w-5' onClick={() => console.log('hello')}>
                     <InformationCircleIcon className="text-orange-200" />
-                </div>
+                </div> */}
                 <div className="m-auto w-2/3 aspect-h-1  rounded-lg overflow-hidden xl:aspect-w-7 xl:aspect-h-8 center">
                     <img
-                        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${item.id}.svg`}
+                        data-testid='image'
+                        src={`${dreamWorlUrl}/${item.id}.svg`}
                         alt={item.name}
                         className="w-100 h-2/3 "
                     />
                 </div>
 
-                <div className=" absolute right-0 bottom-4 p-2 rounded-l bg-gray-500 w-32">
-                    <h3 className="mt-0 text-center text-weight-500 text-white">{item.name}</h3>
+                <div className=" absolute left-0 right-0 bottom-0 mx-auto p-2 rounded-md border-2 border-whiye bg-blue-500 w-34">
+                    <h3 data-testid='name-holder' className="mt-0 text-center text-weight-500 text-white">{upperFirstChar(item.name)}</h3>
                 </div>
             </div>
         </Transition>

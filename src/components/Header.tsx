@@ -1,13 +1,13 @@
 import { Fragment } from 'react'
 import { Popover, Transition } from '@headlessui/react'
-import Logo from '../assets/logo.svg'
+import Logo from '../assets/logo.png'
 
 export default function Header() {
     return (
         <Popover className="relative ">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 w-2/12">
-                <div className="flex justify-center py-6 md:justify-start">
-                    <div className="flex justify-center lg:w-0 lg:flex-1">
+            <div className="max-w-7xl center mx-auto px-4 sm:px-6 w-82">
+                <div className="flex justify-center py-6 md:justify-start ">
+                    <div className="flex justify-center lg:w-0 lg:flex-1 ">
                         <a href="#">
                             <span className="sr-only">Workflow</span>
                             <img
